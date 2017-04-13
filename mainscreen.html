@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Main Screen</title>
+		<meta name="description" content="Main Screen">
+	    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+	    <script src="resources/js/argon.min.js"></script>
+	    <script src="build.js"></script>
+	</head>
+	<body>
+		<ar-scene >
+	
+		<a-assets>
+	        <video id = "my-video" src="assets/Hunger-games-clip.mp4" width="400" height="400" autoplay="true">
+      	</a-assets>
+
+
+
+		<a-plane position="0 9 20" rotation="180 0 0" color="#000000" width="15" height="4"></a-plane>
+		<h3>Atlanta Films</h3>
+
+		<a-entity geometry="primitive: plane" visible="true" id='video' material="src: #my-video" scale="25 12 1" position="1 0 20" rotation="0 180 0" cursor-listener width="400" height="400" depth="30" >
+		<!--  -->
+			</a-entity>
+			<ar-camera>
+    			<a-entity id="myCursor" cursor="fuse:true; fuse-timeout: 1000"
+                    position="0 0 -0.1"
+                    geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
+                    material="color: #FFFFFF; opacity:0.3;">          
+	        	</a-entity>
+		     </ar-camera>
+
+	         <script>
+		      AFRAME.registerComponent('cursor-listener', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            var vid = document.getElementById("my-video");
+		            if (vid != null) {
+		              vid.play();
+		            }
+		            document.getElementById('video').setAttribute('visible', 'false');
+		            document.getElementById('map').setAttribute('visible', 'true');
+		            document.getElementById('cartoon').setAttribute('visible', 'true');
+		            document.getElementById('hunger').setAttribute('visible', 'true');
+		            document.getElementById('other').setAttribute('visible', 'true');
+		            console.log("THREE PINS JESSIE");
+		          });
+		        }
+		      });
+		      
+			</script>
+		 <a-image src="googlemap.png" visible="false" width="15" height="8" scale="1.5 1.5 1" position="1 0 20" rotation="0 180 0" id="map">
+
+		 <a-image src="pindrop.png" visible="false" width="1" height="1" scale=".05 .05 .05" position=".64 .11 19" rotation="0 180 0" id="cartoon" cursor-listener>
+
+		 <a-image src="pindrop1.png" visible="false" width="1" height="1" scale=".05 .05 .05" position=".7 .3 19" rotation="0 180 0" id="hunger" cursor-listener>
+
+		 <a-image src="pindrop2.png" visible="false" width="1" height="1" scale=".05 .05 .05" position="1 0 19" rotation="0 180 0" id="other" cursor-listener>
+		</ar-scene>
+	</body>
+</html>
