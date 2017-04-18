@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Walking Dead</title>
+		<meta name="description" content="Hunger Games">
+	    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+	    <script src="resources/js/argon.min.js"></script>
+	    <script src="build.js"></script>
+	</head>
+	<body>
+		<ar-scene desiredreality="src:url(resources/reality/panorama/index.html);" panorama="src:url(walkingDead/jacksonBridge.png);lla:'-84.3931 33.7608 309';initial:true;" canvas inspector keyboard-shortcuts>
+		
+		<a-assets>
+            <video id = "my-video" src="walkingDead/The%20Walking%20Dead%20-%20Rick%20Grimes%20arrives%20in%20Atlanta.mp4" width="400" height="400" autoplay="true"></video>
+      	</a-assets>
+
+		<a-entity id="helloworld" position="0 0 -8">
+
+        <a-image src="walkingDead/rick.png" width="4" height="13" scale="1 1 1" position="10 0 -5" rotation="20 0 10"></a-image>
+
+        <a-image src="walkingDead/walkingDeadLogo.png" width="5" height="3" scale="1 1 1" position="3 5 0" rotation="0 0 0"></a-image>
+
+		<a-entity geometry="primitive: plane" material="src: #my-video" position="2.5 0.5 0.5" rotation="0 -20 0" cursor-listener width="400" height="400" depth="30">
+			</a-entity>
+			<ar-camera>
+    			<a-entity id="myCursor" cursor="fuse:true; fuse-timeout: 1000"
+                    position="0 0 -0.1"
+                    geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
+                    material="color: #2E3A87; opacity:0.3;">          
+	        	</a-entity>
+		     </ar-camera>
+            </a-entity>
+
+	         <script>
+		      AFRAME.registerComponent('cursor-listener', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            var vid = document.getElementById("my-video");
+		            if (vid != null) {
+		              console.log("This video exists!!");
+		              vid.play();
+		              console.log('I was just clicked at: ', evt.detail.intersection.point);
+		            }
+		          });
+		        }
+		      });
+			</script>
+            
+		</ar-scene>
+	</body>
+</html>
