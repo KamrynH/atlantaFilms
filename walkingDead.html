@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Walking Dead</title>
+		<meta name="description" content="Hunger Games">
+	    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+	    <script src="resources/js/argon.min.js"></script>
+	    <script src="build.js"></script>
+        <script type='text/javascript'>
+            window.onload = function() {
+                if(!window.location.hash) {
+                    window.location = window.location + '#loaded';
+                    window.location.reload();
+                }
+            }            
+        </script>        
+	</head>
+	<body>
+		<ar-scene desiredreality="src:url(resources/reality/panorama/index.html);" panorama="src:url(walkingDead/jacksonBridge.png);lla:'-84.3931 33.7608 309';initial:true;" canvas inspector keyboard-shortcuts>
+		
+		<a-assets>
+            <video id = "my-video" src="walkingDead/The%20Walking%20Dead%20-%20Rick%20Grimes%20arrives%20in%20Atlanta.mp4" width="400" height="400" autoplay="true"></video>
+      	</a-assets>
+
+
+
+        <a-image src="walkingDead/rick.png" width="4" height="10" scale="1 1 1" position="-40 -1 0" rotation="0 90 0" cursor-listener></a-image>
+
+        <a-image src="walkingDead/walkingDeadLogo.png" width="5" height="3" scale="1 1 1" position="-10 2 5" rotation="0 90 0"></a-image>
+
+        <a-box color="tomato" depth="2" height="2" width="2" position="20 0 0" cursor-back></a-box>    
+        <ar-camera>
+            <a-entity id="myCursor" cursor="fuse:true; fuse-timeout: 1000"
+                position="0 0 -0.1"
+                geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
+                material="color: #2E3A87; opacity:0.3;">          
+            </a-entity>
+         </ar-camera>            
+
+	         <script>
+		      AFRAME.registerComponent('cursor-listener', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            var vid = document.getElementById("my-video");
+		            if (vid != null) {
+		              vid.play();
+		            }
+		          });
+		        }
+		      });
+		      AFRAME.registerComponent('cursor-back', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            document.location.href='index.html';
+		          });
+		        }
+		      });                  
+			</script>
+            
+		</ar-scene>
+	</body>
+</html>
