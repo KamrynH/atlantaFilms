@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title>Atlanta Films</title>
+		<meta name="description" content="Main Screen">
+	    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+	    <script src="resources/js/argon.min.js"></script>
+	    <script src="build.js"></script>
+        <script type='text/javascript'>
+            window.onload = function() {
+                if(!window.location.hash) {
+                    window.location = window.location + '#loaded';
+                    window.location.reload();
+                }
+            }            
+        </script>        
+	</head>
+	<body>
+		<ar-scene id = "scene">
+	
+		<a-assets>
+                <image id = "pin" src = "pindrop.png" width = "1" height = "1"></image>
+                <image id = "logo" src = "logo.png" width = "10" height = "3"></image>
+      	</a-assets>
+                
+
+		<a-image src="logo.png" visible="true" width="10" height="4" scale="1 1 1" position="0 10 20" rotation="0 180 0" id="logo"></a-image>
+
+        </a-entity>
+        <a-entity id='map' visible = "true">
+             <a-image src="googlemap.png" width="15" height="8" scale="1.5 1.5 1" position="1 0 20" rotation="0 180 0">
+                <a-image src="pindrop.png" width="1" height="1" scale=".05 .05 .05" position=".64 .11 19" cursor-listener-pina rotation="0 180 0" id="cartoon"></a-image>
+
+              <a-image src="pindrop1.png" width="1" height="1" scale=".05 .05 .05" position=".7 .2 19" rotation="0 180 0" id="hunger" cursor-listener-pinb></a-image>
+
+                <!-- TODO: update location to wherever this is -->
+              <a-image src="pindrop2.png" width="1" height="1" scale=".05 .05 .05" position=".71 .08 19" rotation="0 180 0" id="other" cursor-listener-pinc></a-image>         
+            </a-image>            
+        </a-entity>
+			<ar-camera>
+    			<a-entity id="myCursor" cursor="fuse:true; fuse-timeout: 1000"
+                    position="0 0 -0.1"
+                    geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
+                    material="color: #000000; opacity:0.5;">          
+	        	</a-entity>
+		     </ar-camera>
+            
+
+	         <script>
+
+		      AFRAME.registerComponent('cursor-listener-pina', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            var vid = document.getElementById("cartoon");
+
+		          document.location.href='cartoonNetwork.html';
+		          });
+		        }
+		      });
+		      AFRAME.registerComponent('cursor-listener-pinb', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            var vid = document.getElementById("hunger");
+
+		            document.location.href='hungerGames.html';
+		          });
+		        }
+		      });
+		      AFRAME.registerComponent('cursor-listener-pinc', {
+		        init: function () {
+		          this.el.addEventListener('click', function (evt) {
+		            var vid = document.getElementById("other");
+
+		            document.location.href='walkingDead.html';
+		          });
+		        }
+		      });
+		      
+			</script>
+            
+
+
+		 
+            
+		</ar-scene>
+	</body>
+</html>
